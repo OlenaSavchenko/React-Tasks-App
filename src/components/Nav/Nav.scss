@@ -1,0 +1,29 @@
+.task-menu__list{
+    margin: 20px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    box-shadow: 3px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    }
+    
+    .task-menu__item { 
+        &:not(:last-child){
+            margin-right: 50px;
+        }
+    }
+    
+    .task-menu__link{
+    text-transform: capitalize;
+      text-decoration: none;
+      color: black;
+      font-size: 30px;
+      &--active{
+          color: brown;
+      }
+    }
+
+    .task-menu__btn-back {
+        position: absolute;
+        left: 30px;
+        top:24px
+        }
