@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useSelector } from "react-redux"
-import { getTodos } from "../../store/todos/selectors"
-import TodoCard from "../TodoCard/TodoCard"
+import { useSelector } from "react-redux";
+import { getTodos } from "../../store/todos/selectors";
+import TodoCard from "../TodoCard/TodoCard";
 import Modal from "../Modal/Modal";
 import "./TodoList.scss"
 

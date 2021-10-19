@@ -1,5 +1,5 @@
 import { Switch, Route, Redirect } from 'react-router-dom';
-import Nav from "../Nav/Nav"
+import Nav from "../Nav/Nav";
 import AddTodo from "../../pages/AddTodo/AddTodo";
 import Todos from "../../pages/Todos/Todos";
 import NotFound from '../../pages/NotFound/NotFound';

@@ -1,18 +1,18 @@
-import { updateTodoThunk } from "../../store/todos/operations"
-import { useDispatch } from 'react-redux'
-import './Modal.scss'
+import { useRef } from "react";
+import { useDispatch } from 'react-redux';
+import { updateTodoThunk } from "../../store/todos/operations";
+import './Modal.scss';
 
 const Modal = (props) => {
+    const titleRef = useRef()
     const { task, onCloseClick } = props
     const dispatch = useDispatch()
 
-    const handleUpdateClick = async (e) => {
+    const handleUpdateClick = (e) => {
         e.preventDefault()
-        const formEl = e.target.closest("#add-task-form");
-        const titleEl = formEl.elements["task-title"]
         const newTask = { ...task }
-        newTask.title = titleEl.value
-        await updateTodoThunk(newTask)(dispatch)
+        newTask.title = titleRef.current.value
+        dispatch(updateTodoThunk(newTask))
         onCloseClick()
     }
 
@@ -28,7 +28,7 @@ const Modal = (props) => {
                     </div>
                     <div className="modal-body">
                         <form id="add-task-form" className="modal-form">
-                            <textarea name="task-title" type="text" defaultValue={task.title} className="modal-textarea" />
+                            <textarea ref={titleRef} name="task-title" type="text" defaultValue={task.title} className="modal-textarea" />
                             <button className="btn btn-dark" type="submit" onClick={handleUpdateClick}>Save</button>
                         </form>
                     </div>

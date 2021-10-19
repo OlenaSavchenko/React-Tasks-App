@@ -1,15 +1,14 @@
-
-import { getTodos, deleteTodo, setTodo, updateTodo } from "../../api/api";
+import { getTodos, deleteTodo, setTodo, updateTodo } from "../../api/todos";
 import { setTodos, setError, deleteTodo as deleteTodoState, createTodo, updateTodo as updateTodoState } from "./actions";
 
-export const getTodosThunk = dispatch => {
+export const getTodosThunk = () => dispatch => {
     getTodos()
         .then(todos => dispatch(setTodos(todos)))
         .catch(error => dispatch(setError(error)))
 }
 
-export const deleteTodoThunk = id => dispatch => {
-    deleteTodo(id)
+export const deleteTodoThunk = id => async (dispatch) => {
+    await deleteTodo(id)
     dispatch(deleteTodoState(id))
 }
 
