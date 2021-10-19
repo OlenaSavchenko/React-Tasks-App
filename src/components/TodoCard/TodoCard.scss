@@ -23,13 +23,19 @@
 
 .task__edit-btn {
     position: absolute;
-    bottom: 5px;
+    padding: 0;
+    top: 5px;
     right: 10px;
+    border: none;
+    background-color: transparent;
+    &--done {
+        right: 30px;
+    }
 }
 
 .task__edit-svg{
     transition: 0.3s;
     &:hover {
-        fill: red;
+        fill: rgb(28, 165, 28);
     }
 }

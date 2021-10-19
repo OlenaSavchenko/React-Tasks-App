@@ -1,5 +1,4 @@
-import { updateTodo } from '../../api/api'
-import { updateTodo as updateTodoState } from "../../store/todos/actions"
+import { updateTodoThunk } from "../../store/todos/operations"
 import { useDispatch } from 'react-redux'
 import './Modal.scss'
 
@@ -9,16 +8,12 @@ const Modal = (props) => {
 
     const handleUpdateClick = async (e) => {
         e.preventDefault()
-        const form = e.target.closest("#add-task-form");
-        let newTask = { ...task }
-        newTask.title = form.elements["task-title"].value
-        await modifyTask(newTask)
+        const formEl = e.target.closest("#add-task-form");
+        const titleEl = formEl.elements["task-title"]
+        const newTask = { ...task }
+        newTask.title = titleEl.value
+        await updateTodoThunk(newTask)(dispatch)
         onCloseClick()
-    }
-
-    const modifyTask = async (obj) => {
-        const newTask = await updateTodo(obj)
-        dispatch(updateTodoState(newTask))
     }
 
     return (

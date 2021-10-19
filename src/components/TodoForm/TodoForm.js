@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getTodos } from "../../store/todos/selectors";
-import { setTodo } from "../../api/api";
-import { createTodo } from "../../store/todos/actions";
+import { createTodoThunk } from "../../store/todos/operations"
 import "./TodoForm.scss"
 
 const TodoForm = () => {
@@ -10,20 +9,16 @@ const TodoForm = () => {
 
     const handleAddTodoClick = async (e) => {
         e.preventDefault()
-        const form = e.target.closest("#task-form");
-        const post = {
+        const formEl = e.target.closest("#task-form");
+        const titleEl = formEl.elements["task-title"]
+        const task = {
             userId: 1,
             completed: false
         }
-        post.title = form.elements["task-title"].value
-        post.id = todos.length + 1
-        await addTodo(post)
-        form.elements["task-title"].value = ""
-    }
-
-    const addTodo = async (obj) => {
-        const newTodo = await setTodo(obj)
-        dispatch(createTodo(newTodo))
+        task.title = titleEl.value
+        task.id = todos.length + 1
+        titleEl.value = ""
+        await createTodoThunk(task)(dispatch)
     }
 
     return (
